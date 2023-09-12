@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
             char filename[8];
             newfile_name++;
             sprintf(filename, "%03i.jpg", newfile_name);
-            img = fopen(filename, "wb");
+            img = fopen(filename, "wb");  // wb is write binary. more appropriate here because jpg are binary
 
             if (img == NULL)
             {
@@ -47,6 +47,7 @@ int main(int argc, char *argv[])
             fwrite(buffer, sizeof(unsigned char), 512, img);  // continue writing other halves of existing jpg
         }
     }
-    fclose(img);
+    fclose(img); // close 2 files so no memory leak happens
     fclose(f);
+    return 0;
 }
